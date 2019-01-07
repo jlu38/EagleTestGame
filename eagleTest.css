@@ -1,0 +1,26 @@
+body{
+  background: black;
+}
+
+h1{
+  color: white;
+  text-align: center;
+}
+
+.square{
+  width: 34%;
+  background: white;
+  padding-top: 30%;
+  float: left;
+  margin: 1%;
+	border-radius: 10%;
+	transition: background 0.6s;
+	-webkit-transition: background 0.6s;
+	-moz-transition: background 0.6s;
+}
+
+#container{
+  padding-left: 130px;
+  margin: 0px auto;
+	max-width: 500px;
+}
