@@ -1,12 +1,8 @@
-let colors=[
-  "rgb(255, 0, 0)",
-  "rgb(255, 0, 0)",
-  "rgb(255, 0, 0)",
-  "rgb(0, 255, 0)"
-]
-let pickedColor;
+let numSquares = 4;
 let squares = document.querySelectorAll(".square");
-let pickedColor = colors[3];
+let pickedColor;
+
+initialize();
 
 function initialize(){
 	setup();
@@ -17,11 +13,14 @@ function initialize(){
 //Method - generateRandomColors
 
 function setup(){
+	// Random index to place different color
+	let diffColorIndex = Math.floor(Math.random() * numSquares);
+
 	// Returns array with colors of current mode size
-	let currColors = generateRandomColors(4);
+	let colors = generateRandomColors(numSquares, diffColorIndex);
 
 	//Applies each square with a color on the array
-	for(let i = 0; i < squares.length; i++){
+	for(let i = 0; i < numSquares; i++){
 		squares[i].style.backgroundColor = colors[i];
 	  
 		// Adds functionality to squares when clicked
@@ -29,7 +28,7 @@ function setup(){
 		  let clickedColor = this.style.backgroundColor;
 		  if(pickedColor === clickedColor){
 			alert("Correct");
-			reset();
+			initialize();
 		  }
 		  else{
 			alert("Wrong");
@@ -39,32 +38,31 @@ function setup(){
 }
 
 
-function generateRandomColors(num){
-	//make an array
+function generateRandomColors(numSquares, diffColorIndex){
+	// Make an array
 	let arr = []
-	//random index to place different color
-	let randIndex = Math.floor(Math.random() * num);
-	//selects color of the incorrect squares
+	// Selects color of the incorrect squares
 	let squareColor = randomColor();
-	//repeat num times
-	for(let i = 0; i < num; i++){
-		if(i === randIndex){
+	pickedColor = squareColor;
+
+	// arr holds the different colors at a corresponding index
+	for(let i = 0; i < numSquares; i++){
+		if(i === diffColorIndex){
 			arr.push(randomColor());
 		}
 		else{
 			arr.push(squareColor);
 		}
 	}
-	//return that array
 	return arr;
 }
 
 function randomColor(){
-	//pick a "red" from 0 - 255
+	// Pick a "red" from 0 - 255
 	var r = Math.floor(Math.random() * 256);
-	//pick a "green" from  0 -255
+	// Pick a "green" from  0 -255
 	var g = Math.floor(Math.random() * 256);
-	//pick a "blue" from  0 -255
+	// Pick a "blue" from  0 -255
 	var b = Math.floor(Math.random() * 256);
 	return "rgb(" + r + ", " + g + ", " + b + ")";
 }
