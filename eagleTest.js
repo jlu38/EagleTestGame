@@ -1,6 +1,7 @@
 let numSquares = 4;
 let squares = document.querySelectorAll(".square");
 let pickedColor;
+let score = 0;
 
 initialize();
 
@@ -8,16 +9,12 @@ function initialize(){
 	setup();
 }
 
-//Method to create random color - randomColor
-//Method to apply random color to squares - setUp
-//Method - generateRandomColors
-
 function setup(){
 	// Random index to place different color
-	let diffColorIndex = Math.floor(Math.random() * numSquares);
+	let diffIndex = diffColorIndex();
 
 	// Returns array with colors of current mode size
-	let colors = generateRandomColors(numSquares, diffColorIndex);
+	let colors = generateRandomColors(numSquares, diffIndex);
 
 	//Applies each square with a color on the array
 	for(let i = 0; i < numSquares; i++){
@@ -26,9 +23,10 @@ function setup(){
 		// Adds functionality to squares when clicked
 		squares[i].addEventListener("click", function(){
 		  let clickedColor = this.style.backgroundColor;
-		  if(pickedColor === clickedColor){
+		  if(i === diffIndex){
 			alert("Correct");
-			initialize();
+			score++;
+			reset();
 		  }
 		  else{
 			alert("Wrong");
@@ -37,6 +35,26 @@ function setup(){
 	}
 }
 
+function reset(){
+	// Random index to place different color
+	diffIndex = diffColorIndex();
+
+	// Returns array with colors of current mode size
+	let colors = generateRandomColors(numSquares, diffIndex);
+	newColors(colors);
+}
+
+function diffColorIndex(){
+	let index = Math.floor(Math.random() * numSquares);
+	return index;
+}
+
+function newColors(colors){
+	//Applies each square with a color on the array
+	for(let i = 0; i < numSquares; i++){
+		squares[i].style.backgroundColor = colors[i];
+	}
+}
 
 function generateRandomColors(numSquares, diffColorIndex){
 	// Make an array
