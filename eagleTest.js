@@ -15,6 +15,7 @@ function setup(){
 	score.textContent = 0;
 	// Returns array with colors of current mode size
 	let colors = generateRandomColors(numSquares, diffIndex);
+	console.log(colors[diffIndex]);
 	pickedColor = colors[diffIndex];
 	//Applies each square with a color on the array
 	for(let i = 0; i < numSquares; i++){
@@ -41,6 +42,7 @@ function reset(){
 
 	// Returns array with colors of current mode size
 	let colors = generateRandomColors(numSquares, diffIndex);
+	pickedColor = colors[diffIndex];
 	newColors(colors);
 }
 
