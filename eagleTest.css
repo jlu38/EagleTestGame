@@ -15,7 +15,7 @@ h2{
 }
 
 .square{
-  width: 34%;
+  width: 30%;
   background: white;
   padding-top: 30%;
   float: left;
@@ -26,13 +26,17 @@ h2{
 	-moz-transition: background 0.6s;
 }
 
-#scoreNum{
+#score{
+  padding-right: 13%;
   color: white;
-  padding-left: 78%;
+}
+
+#time{
+  padding-right: 13%;
+  color: white;
 }
 
 #container{
-  padding-left: 130px;
   margin: 0px auto;
 	max-width: 500px;
 }
