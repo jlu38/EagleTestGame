@@ -1,7 +1,10 @@
 let numSquares = 9;
 let squares = document.querySelectorAll(".square");
-let pickedColor;
+let pickedColor, colors, diffIndex;
 let score = document.getElementById("scoreNum");
+
+let remainingTime = document.getElementById("remainTime");
+
 
 initialize();
 
@@ -11,23 +14,49 @@ function initialize(){
 }
 
 function setup(){
-	// Random index to place different color
-	let diffIndex = diffColorIndex();
-	// Returns array with colors of current mode size
-	let colors = generateRandomColors(numSquares, diffIndex);
-	pickedColor = colors[diffIndex];
+	//Setup score and time
+	score.textContent = 0;
+	remainingTime.textContent = 60;
 
+	// Random index to place different color
+	diffIndex = diffColorIndex();
+	// Returns array with colors of current mode size
+	colors = generateRandomColors(numSquares, diffIndex);
+	pickedColor = colors[diffIndex];
+	// let startTime = new Date();
+	let timeEnd = false;
 	//Applies each square with a color on the array
 	for(let i = 0; i < numSquares; i++){
 		squares[i].style.backgroundColor = colors[i];
 		// Adds functionality to squares when clicked
+
 		squares[i].addEventListener("click", function(){
-		  let startTime = new Date();
-		  let clickedColor = this.style.backgroundColor;
-		  if(clickedColor === pickedColor){
-			score.textContent++;
-			nextStage();
-		  }
+		  	let timer = setInterval(function(){
+				
+				// let endTime = new Date(startTime.getTime() + 600);
+
+				// let countdown = endTime - startTime;
+				// console.log(countdown);
+				// if(countdown <= 0){
+				// 	clearInterval(timer);
+				// 	alert("Time's Up");
+
+				// }
+				timeEnd = true;
+		    }, 60000);
+		//   let startTime = new Date();
+		//   let endTime = new Date(startTime.getTime() + 60000);
+		  
+		//   let clickedColor = this.style.backgroundColor;
+		//   if(clickedColor === pickedColor){
+		// 	score.textContent++;
+		// 	nextStage();
+		//   }
+			let clickedColor = this.style.backgroundColor;
+			if(clickedColor === pickedColor && !timeEnd){
+				score.textContent++;
+				nextStage();
+			}
 		});
 	}
 }
