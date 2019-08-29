@@ -13,6 +13,7 @@ function initialize(){
 	nextStage();
 }
 
+// Sets up score, remaining time, and the squares with colors
 function setup(){
 	//Setup score and time
 	score.textContent = 0;
@@ -35,28 +36,10 @@ function setup(){
 		// Adds functionality to squares when clicked
 		squares[i].addEventListener("click", function(){
 		  	let countdown = setInterval(function(){
-				
-				// let endTime = new Date(startTime.getTime() + 600);
-
-				// let countdown = endTime - startTime;
-				// console.log(countdown);
-				// if(countdown <= 0){
-				// 	clearInterval(timer);
-				// 	alert("Time's Up");
-
-				// }
 				countdownEnd = true;
-				
-				
 			  }, timeLimitInSeconds*1000);
-		//   let startTime = new Date();
-		//   let endTime = new Date(startTime.getTime() + 60000);
-		  
-		//   let clickedColor = this.style.backgroundColor;
-		//   if(clickedColor === pickedColor){
-		// 	score.textContent++;
-		// 	nextStage();
-		//   }
+			
+			// Score will be incremented if color is chosen correctly and countdown will decrement each second
 			let clickedColor = this.style.backgroundColor;
 			if(clickedColor === pickedColor && !countdownEnd){
 				if(!hasTimerStarted){
@@ -71,6 +54,7 @@ function setup(){
 	}
 }
 
+// Updates the remaining time each second once a square is cilcked
 function updateTimer(){
 	timeLimitInSeconds--;
 	remainingTime.textContent = timeLimitInSeconds;
@@ -80,6 +64,7 @@ function updateTimer(){
 	let timer = setTimeout('updateTimer()', 1000);
 }
 
+// Applies new colors to the squares after the first square is correctly quessed
 function nextStage(){
 	// Random index to place different color
 	diffIndex = diffColorIndex();
@@ -90,20 +75,21 @@ function nextStage(){
 	newColors(colors);
 }
 
+// Selects the index for the square with the different color
 function diffColorIndex(){
 	let index = Math.floor(Math.random() * numSquares);
 	return index;
 }
 
+// Applies each square with a color on the array
 function newColors(colors){
-	//Applies each square with a color on the array
 	for(let i = 0; i < numSquares; i++){
 		squares[i].style.backgroundColor = colors[i];
 	}
 }
 
+// Stores the colors onto an array and returns it
 function generateRandomColors(numSquares, diffColorIndex){
-	// Make an array
 	let arr = []
 	// Selects color of the incorrect squares
 	let squareColor = randomColor();
@@ -121,6 +107,7 @@ function generateRandomColors(numSquares, diffColorIndex){
 	return arr;
 }
 
+// Generates a random color
 function randomColor(){
 	// Pick a "red" from 0 - 255
 	var r = Math.floor(Math.random() * 256);
