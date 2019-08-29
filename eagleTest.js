@@ -4,7 +4,7 @@ let pickedColor, colors, diffIndex;
 let score = document.getElementById("scoreNum");
 
 let remainingTime = document.getElementById("remainTime");
-
+let timeLimitInSeconds = 60;
 
 initialize();
 
@@ -16,22 +16,25 @@ function initialize(){
 function setup(){
 	//Setup score and time
 	score.textContent = 0;
-	remainingTime.textContent = 60;
+	remainingTime.textContent = timeLimitInSeconds;
+	squareClicked = false;
+	let countdownEnd = false;
+	hasTimerStarted = false;
 
-	// Random index to place different color
+	// Determines random index to place different color
 	diffIndex = diffColorIndex();
+
 	// Returns array with colors of current mode size
 	colors = generateRandomColors(numSquares, diffIndex);
 	pickedColor = colors[diffIndex];
-	// let startTime = new Date();
-	let timeEnd = false;
+
 	//Applies each square with a color on the array
 	for(let i = 0; i < numSquares; i++){
 		squares[i].style.backgroundColor = colors[i];
-		// Adds functionality to squares when clicked
 
+		// Adds functionality to squares when clicked
 		squares[i].addEventListener("click", function(){
-		  	let timer = setInterval(function(){
+		  	let countdown = setInterval(function(){
 				
 				// let endTime = new Date(startTime.getTime() + 600);
 
@@ -42,8 +45,10 @@ function setup(){
 				// 	alert("Time's Up");
 
 				// }
-				timeEnd = true;
-		    }, 60000);
+				countdownEnd = true;
+				
+				
+			  }, timeLimitInSeconds*1000);
 		//   let startTime = new Date();
 		//   let endTime = new Date(startTime.getTime() + 60000);
 		  
@@ -53,12 +58,26 @@ function setup(){
 		// 	nextStage();
 		//   }
 			let clickedColor = this.style.backgroundColor;
-			if(clickedColor === pickedColor && !timeEnd){
+			if(clickedColor === pickedColor && !countdownEnd){
+				if(!hasTimerStarted){
+					updateTimer();
+					hasTimerStarted = true;
+				}
 				score.textContent++;
 				nextStage();
 			}
 		});
+
 	}
+}
+
+function updateTimer(){
+	timeLimitInSeconds--;
+	remainingTime.textContent = timeLimitInSeconds;
+	if(timeLimitInSeconds < 1){
+		clearTimeout(timer);
+	}
+	let timer = setTimeout('updateTimer()', 1000);
 }
 
 function nextStage(){
