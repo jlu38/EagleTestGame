@@ -4,7 +4,9 @@ let pickedColor, colors, diffIndex;
 let score = document.getElementById("scoreNum");
 
 let remainingTime = document.getElementById("remainTime");
-let timeLimitInSeconds = 60;
+let timer;
+
+let resetButton = document.getElementById("reset");
 
 initialize();
 
@@ -17,6 +19,7 @@ function initialize(){
 function setup(){
 	//Setup score and time
 	score.textContent = 0;
+	let timeLimitInSeconds = 60;
 	remainingTime.textContent = timeLimitInSeconds;
 	squareClicked = false;
 	let countdownEnd = false;
@@ -54,6 +57,13 @@ function setup(){
 	}
 }
 
+// clearTimeout
+// Stop timer until square is clicked
+resetButton.addEventListener("click", function(){
+	clearTimeout(timer);
+	setup();
+})
+
 // Updates the remaining time each second once a square is cilcked
 function updateTimer(){
 	timeLimitInSeconds--;
@@ -61,7 +71,7 @@ function updateTimer(){
 	if(timeLimitInSeconds < 1){
 		clearTimeout(timer);
 	}
-	let timer = setTimeout('updateTimer()', 1000);
+	timer = setTimeout('updateTimer()', 1000);
 }
 
 // Applies new colors to the squares after the first square is correctly quessed
