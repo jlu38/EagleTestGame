@@ -4,7 +4,8 @@ let pickedColor, colors, diffIndex;
 let score = document.getElementById("scoreNum");
 
 let remainingTime = document.getElementById("remainTime");
-let timer;
+let timer, timeLimitInSeconds;
+
 
 let resetButton = document.getElementById("reset");
 
@@ -19,7 +20,7 @@ function initialize(){
 function setup(){
 	//Setup score and time
 	score.textContent = 0;
-	let timeLimitInSeconds = 60;
+	timeLimitInSeconds = 60;
 	remainingTime.textContent = timeLimitInSeconds;
 	squareClicked = false;
 	let countdownEnd = false;
@@ -57,8 +58,6 @@ function setup(){
 	}
 }
 
-// clearTimeout
-// Stop timer until square is clicked
 resetButton.addEventListener("click", function(){
 	clearTimeout(timer);
 	setup();
@@ -70,6 +69,7 @@ function updateTimer(){
 	remainingTime.textContent = timeLimitInSeconds;
 	if(timeLimitInSeconds < 1){
 		clearTimeout(timer);
+		remainingTime.textContent = 0;
 	}
 	timer = setTimeout('updateTimer()', 1000);
 }
