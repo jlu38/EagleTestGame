@@ -1,13 +1,14 @@
-let numSquares = 9;
-let squares = document.querySelectorAll(".square");
-let pickedColor, colors, diffIndex;
-let score = document.getElementById("scoreNum");
-
-let remainingTime = document.getElementById("remainTime");
-let timer, timeLimitInSeconds;
-
-
-let resetButton = document.getElementById("reset");
+let numSquares = 9,
+	pickedColor,
+	colors,
+	diffIndex,
+	squares = document.querySelectorAll(".square"),
+	score = document.getElementById("scoreNum"),
+	remainingTime = document.getElementById("remainTime"),
+	timer, 
+	timeLimitInSeconds,
+	countdownEnd,
+	resetButton = document.getElementById("reset");
 
 initialize();
 
@@ -23,7 +24,7 @@ function setup(){
 	timeLimitInSeconds = 60;
 	remainingTime.textContent = timeLimitInSeconds;
 	squareClicked = false;
-	let countdownEnd = false;
+	countdownEnd = false;
 	hasTimerStarted = false;
 
 	// Determines random index to place different color
@@ -58,6 +59,7 @@ function setup(){
 	}
 }
 
+// Resets game when reset button is clicked
 resetButton.addEventListener("click", function(){
 	clearTimeout(timer);
 	setup();
@@ -120,10 +122,18 @@ function generateRandomColors(numSquares, diffColorIndex){
 // Generates a random color
 function randomColor(){
 	// Pick a "red" from 0 - 255
-	var r = Math.floor(Math.random() * 256);
+	let r = Math.floor(Math.random() * 256),
 	// Pick a "green" from  0 -255
-	var g = Math.floor(Math.random() * 256);
+		g = Math.floor(Math.random() * 256),
 	// Pick a "blue" from  0 -255
-	var b = Math.floor(Math.random() * 256);
+		b = Math.floor(Math.random() * 256);
+	selectDiffColor(r, g, b);
+	return "rgb(" + r + ", " + g + ", " + b + ")";
+}
+
+function selectDiffColor(r, g, b){
+	r += 10;
+	g += 10;
+	b += 10;
 	return "rgb(" + r + ", " + g + ", " + b + ")";
 }
