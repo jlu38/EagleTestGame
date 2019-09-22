@@ -8,6 +8,7 @@ let numSquares = 9,
 	timer, 
 	timeLimitInSeconds,
 	countdownEnd,
+	diffColor,
 	resetButton = document.getElementById("reset");
 
 initialize();
@@ -33,7 +34,7 @@ function setup(){
 	// Returns array with colors of current mode size
 	colors = generateRandomColors(numSquares, diffIndex);
 	pickedColor = colors[diffIndex];
-
+	
 	//Applies each square with a color on the array
 	for(let i = 0; i < numSquares; i++){
 		squares[i].style.backgroundColor = colors[i];
@@ -46,6 +47,9 @@ function setup(){
 			
 			// Score will be incremented if color is chosen correctly and countdown will decrement each second
 			let clickedColor = this.style.backgroundColor;
+			// console.log("pickedColor: " + pickedColor);
+
+			// console.log("clickedcolor: " + clickedColor);			
 			if(clickedColor === pickedColor && !countdownEnd){
 				if(!hasTimerStarted){
 					updateTimer();
@@ -96,13 +100,14 @@ function diffColorIndex(){
 // Applies each square with a color on the array
 function newColors(colors){
 	for(let i = 0; i < numSquares; i++){
+		console.log(colors[i]);								//REMOVE LATER
 		squares[i].style.backgroundColor = colors[i];
 	}
 }
 
 // Stores the colors onto an array and returns it
 function generateRandomColors(numSquares, diffColorIndex){
-	let arr = []
+	let arr = [];
 	// Selects color of the incorrect squares
 	let squareColor = randomColor();
 	pickedColor = squareColor;
@@ -110,7 +115,7 @@ function generateRandomColors(numSquares, diffColorIndex){
 	// arr holds the different colors at a corresponding index
 	for(let i = 0; i < numSquares; i++){
 		if(i === diffColorIndex){
-			arr.push(randomColor());
+			arr.push(/*diffColor*/randomColor());
 		}
 		else{
 			arr.push(squareColor);
@@ -127,13 +132,13 @@ function randomColor(){
 		g = Math.floor(Math.random() * 256),
 	// Pick a "blue" from  0 -255
 		b = Math.floor(Math.random() * 256);
-	selectDiffColor(r, g, b);
+	// diffColor = selectDiffColor(r, g, b);
 	return "rgb(" + r + ", " + g + ", " + b + ")";
 }
 
-function selectDiffColor(r, g, b){
-	r += 10;
-	g += 10;
-	b += 10;
-	return "rgb(" + r + ", " + g + ", " + b + ")";
-}
+// function selectDiffColor(r, g, b){
+// 	r += 30;
+// 	g += 30;
+// 	b += 30;
+// 	return "rgb(" + r + ", " + g + ", " + b + ")";
+// }
