@@ -1,17 +1,21 @@
 body{
-  background: black;
+  background: #3e3e3e;
   font-family: "Montserrat", "Avenir";
 }
 
 h1{
   color: white;
   text-align: center;
+  text-transform: uppercase;
+  padding: 15px 0px;
+  margin: 0;
+  background-color:steelblue;
+	letter-spacing: 2px;
+
 }
 
 h2{
   color: white;
-  text-align: left;
-  padding-left: 75%;
 }
 
 .square{
@@ -26,17 +30,44 @@ h2{
 	-moz-transition: background 0.4s;
 }
 
+.sidebar{
+  text-align: center;
+  width: 300px;
+  position: fixed;
+  top: 80px; 
+  right: 130px;
+  padding-top: 20px;
+  background-color: black; /*debugging*/
+}
+
 #score{
-  padding-right: 13%;
+  float: left;
   color: white;
 }
 
 #time{
-  padding-right: 13%;
   color: white;
+  float: left;
 }
 
 #container{
-  margin: 0px auto;
+  margin: 20px auto;
 	max-width: 500px;
+}
+
+button {
+  text-transform: uppercase;
+	color: white;
+	background: steelblue;
+	letter-spacing: 1px;
+	transition: all 0.2s;
+	-webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  border-radius: 25px;
+}
+
+button:hover {
+  color: steelblue;
+  background: white;
+  border-radius: 25px;
 }

@@ -3,36 +3,43 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="eagleTest.css">
-
     <title>Eagle Test Game</title>
   </head>
   <body>
     <h1>Eagle Test Game</h1>
 
     <div id="container">
-      <div class="square"></div>
-  		<div class="square"></div>
-  		<div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
+      <div class="row">
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+      </div>
+      <div class="row">
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+      </div>
+      <div class="row">
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+      </div>
     </div>
 
-    <div id="reset">
-      <button>Reset</button>
+    <div class="sidebar">
+      <div id="reset">
+        <button type="button">Reset</button>
+      </div>
+      <!-- <div id="score"> -->
+        <h2>Score</h2>
+        <h2 id="scoreNum"></h2>
+      <!-- </div> -->
+      <!-- <div id="time"> -->
+        <h2>Remaining Time</h2>
+        <h2 id="remainTime"></h2>
+      <!-- </div> -->
     </div>
 
-    <div id="score">
-      <h2>Score</h2>
-      <h2 id="scoreNum"></h2>
-    </div>
-    <div id="time">
-      <h2>Remaining Time</h2>
-      <h2 id="remainTime"></h2>
-    </div>
     <script type="text/javascript" src="eagleTest.js"></script>
   </body>
 </html>
