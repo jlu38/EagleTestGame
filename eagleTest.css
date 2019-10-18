@@ -10,13 +10,12 @@ h1{
   padding: 15px 0px;
   margin: 0;
   background-color:steelblue;
+	letter-spacing: 2px;
 
 }
 
 h2{
   color: white;
-  text-align: left;
-  padding-left: 75%;
 }
 
 .square{
@@ -31,14 +30,24 @@ h2{
 	-moz-transition: background 0.4s;
 }
 
+.sidebar{
+  text-align: center;
+  width: 300px;
+  position: fixed;
+  top: 80px; 
+  right: 130px;
+  padding-top: 20px;
+  background-color: black; /*debugging*/
+}
+
 #score{
-  padding-right: 10%;
+  float: left;
   color: white;
 }
 
 #time{
-  padding-right: 10%;
   color: white;
+  float: left;
 }
 
 #container{
@@ -47,18 +56,18 @@ h2{
 }
 
 button {
-  margin-right: 30%;
   text-transform: uppercase;
 	color: white;
 	background: steelblue;
-	height: 100%;
 	letter-spacing: 1px;
-	transition: all 0.3s;
+	transition: all 0.2s;
 	-webkit-transition: all 0.3s;
-	-moz-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  border-radius: 25px;
 }
 
 button:hover {
   color: steelblue;
   background: white;
+  border-radius: 25px;
 }
